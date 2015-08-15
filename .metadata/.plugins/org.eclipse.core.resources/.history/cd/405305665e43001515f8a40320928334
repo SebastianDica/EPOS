@@ -1,0 +1,63 @@
+package scenes;
+
+import javafx.animation.FadeTransition;
+import javafx.animation.Timeline;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
+
+public class MainScene {
+	public Scene returnScene() {
+		Group root = new Group();
+		Scene scene = new Scene(root, Color.BLACK);
+		Text text = new Text();
+		TextField userField = createTextField("Username", 400);
+		TextField passField = createTextField("Password", 430);
+		text.setX(520);
+		text.setY(300);
+		text.setFont(Font.font("Monospace", 70));
+		text.setText("Gungnir");
+		text.setFill(Color.WHITE);
+		root.getChildren().add(text);
+		root.getChildren().add(userField);
+		root.getChildren().add(passField);
+		setTextTransition(text);
+		setFieldTransition(userField);
+		setFieldTransition(passField);
+		return (scene);
+	}
+
+	private TextField createTextField(String promt, int location) {
+		TextField field = new TextField();
+		field.setPromptText(promt);
+		field.setLayoutX(600);
+		field.setLayoutY(location);
+		field.setStyle("" + "-fx-font-weight: bold;"
+				+ "-fx-font-family: monospace;" + "-fx-text-fill: white;"
+				+ "-fx-background-color: grey");
+		field.setPrefWidth(150);
+		return field;
+	}
+
+	private static void setFieldTransition(TextField field) {
+		FadeTransition ft = new FadeTransition(Duration.millis(3000), field);
+		ft.setFromValue(1.0);
+		ft.setToValue(0.5);
+		ft.setCycleCount(Timeline.INDEFINITE);
+		ft.setAutoReverse(true);
+		ft.play();
+	}
+
+	private static void setTextTransition(Text text) {
+		FadeTransition ft = new FadeTransition(Duration.millis(3000), text);
+		ft.setFromValue(1.0);
+		ft.setToValue(0.1);
+		ft.setCycleCount(Timeline.INDEFINITE);
+		ft.setAutoReverse(true);
+		ft.play();
+	}
+}

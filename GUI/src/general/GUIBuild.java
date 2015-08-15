@@ -1,10 +1,14 @@
 package general;
+
 /**
  * This class starts up the GUI.
- * @author Sebastian Dica
+ * @author Sebastian
  *
  */
 public class GUIBuild 
 {
-	//Testing GUI
+	public static void main(String[] args)
+	{
+		FrameBuilder.buildFrame(args);
+	}
 }
